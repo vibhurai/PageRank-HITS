@@ -11,6 +11,7 @@ Info:
 -> /img is unnecessary. main.py is where the program is mainly executed from.
 
 -> As of now, the things left to do are....
+
     > Understanding pageranking working
     > Implementing and making query processing for link analysis algos and incorporating the same
     > Implementing VSM
