@@ -8,6 +8,7 @@ def init_graph(fname):
     graph = Graph()
 
     for line in lines:
+        # print(line)
         [parent, child] = line.strip().split(',')
         graph.add_edge(parent, child)
 

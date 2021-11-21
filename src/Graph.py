@@ -29,10 +29,16 @@ class Graph:
 
     def display(self):
         for node in self.nodes:
-            print(f'{node.name} links to {[child.name for child in node.children]}')
+            print(
+                f'{node.name} links to {[child.name for child in node.children]}')
+            print(
+                f'{node.name} has parents to {[child.name for child in node.parents]}')
+            print(
+                f'{node.name} has children to {[child.name for child in node.children]}')
+            print("\n\n")
 
     def sort_nodes(self):
-        self.nodes.sort(key=lambda node: int(node.name))
+        self.nodes.sort(key=lambda node: str(node.name))
 
     def display_hub_auth(self):
         for node in self.nodes:
@@ -53,14 +59,17 @@ class Graph:
             node.pagerank /= pagerank_sum
 
     def get_auth_hub_list(self):
-        auth_list = np.asarray([node.auth for node in self.nodes], dtype='float32')
-        hub_list = np.asarray([node.hub for node in self.nodes], dtype='float32')
+        auth_list = np.asarray(
+            [node.auth for node in self.nodes], dtype='float32')
+        hub_list = np.asarray(
+            [node.hub for node in self.nodes], dtype='float32')
 
-        return np.round(auth_list, 3), np.round(hub_list, 3)
+        return np.round(auth_list, 10), np.round(hub_list, 10)
 
     def get_pagerank_list(self):
-        pagerank_list = np.asarray([node.pagerank for node in self.nodes], dtype='float32')
-        return np.round(pagerank_list, 3)
+        pagerank_list = np.asarray(
+            [node.pagerank for node in self.nodes], dtype='float32')
+        return np.round(pagerank_list, 10)
 
 
 class Node:
@@ -92,6 +101,7 @@ class Node:
 
     def update_pagerank(self, d, n):
         in_neighbors = self.parents
-        pagerank_sum = sum((node.pagerank / len(node.children)) for node in in_neighbors)
+        pagerank_sum = sum((node.pagerank / len(node.children))
+                           for node in in_neighbors)
         random_jumping = d / n
         self.pagerank = random_jumping + (1-d) * pagerank_sum
