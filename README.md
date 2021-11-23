@@ -17,7 +17,7 @@ Info:
     > Implementing VSM
     > Std metrics comparison bw link analysis algos and VSM
 
-
+https://amitness.com/2020/08/information-retrieval-evaluation/
 
 
 <p align=center>
@@ -40,6 +40,7 @@ I have written three articles to explain the concept and implementation of these
 - [HITS Algorithm](https://towardsdatascience.com/hits-algorithm-link-analysis-explanation-and-python-implementation-61f0762fd7cf)
 - [PageRank Algorithm](https://towardsdatascience.com/pagerank-3c568a7d2332)
 - [SimRank Algorithm](https://towardsdatascience.com/simrank-similarity-analysis-1d8d5a18766a)
+- [Evaluation Metrics](https://amitness.com/2020/08/information-retrieval-evaluation/)
 
 ## 💻 Getting Started
 
