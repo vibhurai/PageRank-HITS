@@ -16,8 +16,9 @@ def HITS_one_iter(graph):
 def HITS(graph, iteration=100):
     for i in range(iteration):
         HITS_one_iter(graph)
-        # graph.display_hub_auth()
-        # print()
+
+    # graph.display_hub_auth()
+    # print()
 
 
 if __name__ == '__main__':
