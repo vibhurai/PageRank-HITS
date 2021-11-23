@@ -37,13 +37,16 @@ def output_PageRank(iteration, graph, damping_factor, result_dir, fname):
 
     PageRank(graph, damping_factor, iteration)
     pagerank_list = graph.get_pagerank_list()
-    print('PageRank:')
-    print(pagerank_list)
+
+    pagerank_list.sort(reverse=True)
+
+    print('\n\nPageRank:')
+    print(pagerank_list[1:15])
     print()
     path = os.path.join(result_dir, fname)
     os.makedirs(path, exist_ok=True)
-    np.savetxt(os.path.join(path, fname + pagerank_fname),
-               pagerank_list, fmt='%.10f', newline=" ")
+    with open(os.path.join(path, fname + pagerank_fname), 'w') as f:
+        f.write("%s\n" % pagerank_list)
 
 
 def output_SimRank(iteration, graph, decay_factor, result_dir, fname):
@@ -111,9 +114,7 @@ if __name__ == '__main__':
     file = os.path.join(
         "C:\KR\IR\Test\PageRank-HITS-SimRank", "hub_links.txt")
     graph = init_graph(file)
-    # graph.display()
-    # sim = Similarity(graph, decay_factor)
 
     output_HITS(iteration, graph, result_dir, "hub_links")
-    # output_PageRank(iteration, graph, damping_factor, result_dir, fname)
+    output_PageRank(iteration, graph, damping_factor, result_dir, fname)
     # output_SimRank(iteration, graph, decay_factor, result_dir, fname)

@@ -59,19 +59,14 @@ class Graph:
             node.pagerank /= pagerank_sum
 
     def get_auth_hub_list(self):
-        # self.nodes.sort(key=lambda node: int(node.auth), reverse=True)
-
         auth_list = [(node.auth, node.name) for node in self.nodes]
-
-        # self.nodes.sort(key=lambda node: int(node.hub), reverse=True)
         hub_list = [(node.hub, node.name) for node in self.nodes]
 
         return auth_list, hub_list
 
     def get_pagerank_list(self):
-        pagerank_list = np.asarray(
-            [node.pagerank for node in self.nodes], dtype='float32')
-        return np.round(pagerank_list, 10)
+        pagerank_list = [(node.pagerank, node.name) for node in self.nodes]
+        return pagerank_list
 
 
 class Node:
