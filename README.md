@@ -1,3 +1,25 @@
+Info:
+
+-> Dataset me links.txt name ki file h, thats our data.
+
+-> /src has diff files out of which Graph.py is responsible for converting the raw data to a graph. Skim through this file once to see all the functions that the program uses over the course of its execution.
+
+-> HTIS is working perfectly, Simrank isn't necessary ig, Pagerank tum log samajhkr ek baar crosscheck krlna if the guy's code is in accordance with the algorithm or not.
+
+-> The /results would have a filder for each datasert which would further have texts files with the pageranking, auth and hub scores for the dataset.
+
+-> /img is unnecessary. main.py is where the program is mainly executed from.
+
+-> As of now, the things left to do are....
+
+    > Understanding pageranking working
+    > Implementing and making query processing for link analysis algos and incorporating the same
+    > Implementing VSM
+    > Std metrics comparison bw link analysis algos and VSM
+
+
+
+
 <p align=center>
     <img src="img/graph_4.png">
 </p>
