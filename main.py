@@ -14,18 +14,22 @@ def output_HITS(iteration, graph, result_dir, fname):
 
     HITS(graph, iteration)
     auth_list, hub_list = graph.get_auth_hub_list()
-    print()
     print('Authority:')
-    print(auth_list)
+    print(auth_list[1:15])
+
+    auth_list.sort(reverse=True)
+    hub_list.sort(reverse=True)
+
     path = os.path.join(result_dir, fname)
     os.makedirs(path, exist_ok=True)
-    np.savetxt(os.path.join(path, fname + authority_fname),
-               auth_list, fmt='%.10f', newline=" ")
-    print('Hub:')
-    print(hub_list)
-    print()
-    np.savetxt(os.path.join(path, fname + hub_fname),
-               hub_list, fmt='%.10f', newline=" ")
+
+    with open(os.path.join(path, fname + authority_fname), 'w') as f:
+        f.write("%s\n" % auth_list)
+
+    print('\n\nHub:')
+    print(hub_list[1:15])
+    with open(os.path.join(path, fname + hub_fname), 'w') as f:
+        f.write("%s\n" % hub_list)
 
 
 def output_PageRank(iteration, graph, damping_factor, result_dir, fname):
@@ -33,13 +37,16 @@ def output_PageRank(iteration, graph, damping_factor, result_dir, fname):
 
     PageRank(graph, damping_factor, iteration)
     pagerank_list = graph.get_pagerank_list()
-    print('PageRank:')
-    print(pagerank_list)
+
+    pagerank_list.sort(reverse=True)
+
+    print('\n\nPageRank:')
+    print(pagerank_list[1:15])
     print()
     path = os.path.join(result_dir, fname)
     os.makedirs(path, exist_ok=True)
-    np.savetxt(os.path.join(path, fname + pagerank_fname),
-               pagerank_list, fmt='%.10f', newline=" ")
+    with open(os.path.join(path, fname + pagerank_fname), 'w') as f:
+        f.write("%s\n" % pagerank_list)
 
 
 def output_SimRank(iteration, graph, decay_factor, result_dir, fname):
@@ -62,7 +69,7 @@ if __name__ == '__main__':
     optparser.add_option('-f', '--input_file',
                          dest='input_file',
                          help='CSV filename',
-                         default='dataset/graph_1.txt')
+                         default='dataset/links.txt')
     optparser.add_option('--damping_factor',
                          dest='damping_factor',
                          help='Damping factor (float)',
@@ -89,10 +96,25 @@ if __name__ == '__main__':
     result_dir = 'result'
     fname = file_path.split('/')[-1].split('.')[0]
 
-    graph = init_graph(file_path)
-    # graph.display()
-    # sim = Similarity(graph, decay_factor)
+    fileobj = open("C:\\KR\\IR\\Test\\PageRank-HITS-SimRank\\testt.txt")
 
-    output_HITS(iteration, graph, result_dir, fname)
-    # output_PageRank(iteration, graph, damping_factor, result_dir, fname)
+    lines_original = []
+    for line in fileobj:
+        lines_original.append(line.strip())
+
+    with open(file_path) as f:
+        lines = f.readlines()
+
+        with open(os.path.join("C:\KR\IR\Test\PageRank-HITS-SimRank", "hub_links.txt"), 'w') as f0:
+            for line in lines_original:
+                for _ in lines:
+                    if(_.find(line) != -1):
+                        f0.write("%s" % _)
+
+    file = os.path.join(
+        "C:\KR\IR\Test\PageRank-HITS-SimRank", "hub_links.txt")
+    graph = init_graph(file)
+
+    output_HITS(iteration, graph, result_dir, "hub_links")
+    output_PageRank(iteration, graph, damping_factor, result_dir, fname)
     # output_SimRank(iteration, graph, decay_factor, result_dir, fname)
