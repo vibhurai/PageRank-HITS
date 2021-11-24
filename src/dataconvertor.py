@@ -1,26 +1,23 @@
 import os
-import csv
+
 fileobj = open(
     "..\\dataset\\articles.txt")
+
 lines = []
+
 for line in fileobj:
     lines.append(line.strip())
 
-# my_list = []
-# with open('..\\dataset\\Data.csv', 'r') as f:
-#     print()
-#     # file = csv.reader(f)
-#     # my_list = list(file)
-# print(lines)
-# fileobj = open(
-#     "C:\\KR\\IR\\Test\\PageRank-HITS-SimRank\\dataset\\Data.csv")
-# liness = []
-# for line in fileobj:
-#     lines.append(line.strip())
+urls = []
 
-# print(liness)
+fileobj = open(
+    "..\\dataset\\Data.txt", encoding="utf8")
 
-for item in lines:
-    with open(os.path.join("C:\KR\IR\Test\PageRank-HITS-SimRank\dataset\VSM", str(item+'.txt')), 'w') as f:
-        f.write("%s\n" % item)
-#         f.write("%s\n" % item)
+for line in fileobj:
+    urls.append(line.strip())
+
+# ===========================================================================================================================================
+for title, url in zip(lines, urls):
+    with open(os.path.join("..\dataset\VSM-test", str(title+'.txt')), 'w', encoding="utf8") as f:
+        f.write("%s\n" % title)
+        f.write("%s\n" % url)

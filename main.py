@@ -24,12 +24,55 @@ def output_HITS(iteration, graph, result_dir, fname):
     os.makedirs(path, exist_ok=True)
 
     with open(os.path.join(path, fname + authority_fname), 'w') as f:
-        f.write("%s\n" % auth_list)
+        for idx, i in enumerate(auth_list):
+            f.write("{0} {1}\n".format(idx+1, i))
 
     print('\n\nHub:')
     print(hub_list[1:15])
     with open(os.path.join(path, fname + hub_fname), 'w') as f:
-        f.write("%s\n" % hub_list)
+        for idx, i in enumerate(hub_list):
+            f.write("{0} {1}\n".format(idx+1, i))
+
+# def output_HITS(iteration, graph, result_dir, fname):
+#     authority_fname = '_HITS_authority.txt'
+#     hub_fname = '_HITS_hub.txt'
+
+#     HITS(graph, iteration)
+#     auth_list, hub_list = graph.get_auth_hub_list()
+#     print('Authority:')
+#     print(auth_list[1:15])
+
+#     auth_list.sort(reverse=True)
+#     hub_list.sort(reverse=True)
+
+#     path = os.path.join(result_dir, fname)
+#     os.makedirs(path, exist_ok=True)
+
+#     with open(os.path.join(path, fname + authority_fname), 'w') as f:
+#         f.write("%s\n" % auth_list)
+
+#     print('\n\nHub:')
+#     print(hub_list[1:15])
+
+#     with open(os.path.join(path, fname + hub_fname), 'w') as f:
+#         f.write("%s\n" % hub_list)
+
+
+# def output_PageRank(iteration, graph, damping_factor, result_dir, fname):
+    # pagerank_fname = '_PageRank.txt'
+
+    # PageRank(graph, damping_factor, iteration)
+    # pagerank_list = graph.get_pagerank_list()
+
+    # pagerank_list.sort(reverse=True)
+
+    # print('\n\nPageRank:')
+    # print(pagerank_list[1:15])
+    # print()
+    # path = os.path.join(result_dir, fname)
+    # os.makedirs(path, exist_ok=True)
+    # with open(os.path.join(path, fname + pagerank_fname), 'w') as f:
+    #     f.write("%s\n" % pagerank_list)
 
 
 def output_PageRank(iteration, graph, damping_factor, result_dir, fname):
@@ -46,21 +89,8 @@ def output_PageRank(iteration, graph, damping_factor, result_dir, fname):
     path = os.path.join(result_dir, fname)
     os.makedirs(path, exist_ok=True)
     with open(os.path.join(path, fname + pagerank_fname), 'w') as f:
-        f.write("%s\n" % pagerank_list)
-
-
-def output_SimRank(iteration, graph, decay_factor, result_dir, fname):
-    simrank_fname = '_SimRank.txt'
-
-    SimRank(graph, sim, iteration)
-    ans = sim.get_sim_matrix()
-    print('SimRank:')
-    print(ans)
-    print()
-    path = os.path.join(result_dir, fname)
-    os.makedirs(path, exist_ok=True)
-    np.savetxt(os.path.join(path, fname + simrank_fname),
-               ans, delimiter=' ', fmt='%.3f')
+        for idx, i in enumerate(pagerank_list):
+            f.write("{0} {1}\n".format(idx+1, i))
 
 
 if __name__ == '__main__':
@@ -118,4 +148,3 @@ if __name__ == '__main__':
 
     output_HITS(iteration, graph, result_dir, "hub_links")
     output_PageRank(iteration, graph, damping_factor, result_dir, fname)
-    # output_SimRank(iteration, graph, decay_factor, result_dir, fname)

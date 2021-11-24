@@ -60,7 +60,10 @@ class Graph:
 
     def get_auth_hub_list(self):
         auth_list = [(node.auth, node.name) for node in self.nodes]
-        hub_list = [(node.hub, node.name) for node in self.nodes]
+        # hub_list = [(node.hub, node.name) for node in self.nodes]
+        hub_list = []
+        for node in self.nodes:
+            hub_list.append((node.hub, node.name))
 
         return auth_list, hub_list
 
