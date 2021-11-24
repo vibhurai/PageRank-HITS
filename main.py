@@ -97,7 +97,7 @@ if __name__ == '__main__':
     fname = file_path.split('/')[-1].split('.')[0]
 
     fileobj = open(
-        "C:\\KR\\IR\\Test\\PageRank-HITS-SimRank\\relevant_docs.txt")
+        ".\\relevant_docs.txt")
 
     lines_original = []
     for line in fileobj:
@@ -106,14 +106,14 @@ if __name__ == '__main__':
     with open(file_path) as f:
         lines = f.readlines()
 
-        with open(os.path.join("C:\KR\IR\Test\PageRank-HITS-SimRank", "hub_links.txt"), 'w') as f0:
+        with open(os.path.join(".", "hub_links.txt"), 'w') as f0:
             for line in lines_original:
                 for _ in lines:
                     if(_.find(line) != -1):
                         f0.write("%s" % _)
 
     file = os.path.join(
-        "C:\KR\IR\Test\PageRank-HITS-SimRank", "hub_links.txt")
+        ".", "hub_links.txt")
     graph = init_graph(file)
 
     output_HITS(iteration, graph, result_dir, "hub_links")
