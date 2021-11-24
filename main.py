@@ -96,7 +96,8 @@ if __name__ == '__main__':
     result_dir = 'result'
     fname = file_path.split('/')[-1].split('.')[0]
 
-    fileobj = open("C:\\KR\\IR\\Test\\PageRank-HITS-SimRank\\testt.txt")
+    fileobj = open(
+        "C:\\KR\\IR\\Test\\PageRank-HITS-SimRank\\relevant_docs.txt")
 
     lines_original = []
     for line in fileobj:
